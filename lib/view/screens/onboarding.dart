@@ -107,7 +107,7 @@ class _OnboardingState extends State<Onboarding> {
                 );
               },
               child: Text(
-                  currentIndex == contents.length - 1 ? "Giriş Yap" : "İleri"),
+                  currentIndex == contents.length - 1 ? "Hadi Başlayalım" : "İleri"),
               style: style,
             ),
           ),
