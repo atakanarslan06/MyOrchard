@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meyvebahcem/model/content_model.dart';
-import 'package:meyvebahcem/view/screens/GirisYap.dart';
+import 'package:meyvebahcem/view/screens/GirisKayitAnim.dart';
+
 
 class Onboarding extends StatefulWidget {
   const Onboarding({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class _OnboardingState extends State<Onboarding> {
 
   @override
   Widget build(BuildContext context) {
-    ButtonStyle _style = TextButton.styleFrom(
+    ButtonStyle style = TextButton.styleFrom(
         backgroundColor: Colors.lightGreenAccent,
         foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)));
@@ -53,20 +54,20 @@ class _OnboardingState extends State<Onboarding> {
                         contents[i].image,
                         height: 300,
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Text(
                         contents[i].title,
-                        style: TextStyle(
+                        style: const TextStyle(
                           color: Colors.green,
                           fontSize: 35,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Text(
                         contents[i].description,
                         textAlign: TextAlign.center,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           color: Colors.grey,
                         ),
@@ -96,7 +97,7 @@ class _OnboardingState extends State<Onboarding> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const GirisYapEkran(),
+                      builder: (_) => const GirisKayitAnim(),
                     ),
                   );
                 }
@@ -107,7 +108,7 @@ class _OnboardingState extends State<Onboarding> {
               },
               child: Text(
                   currentIndex == contents.length - 1 ? "Giriş Yap" : "İleri"),
-              style: _style,
+              style: style,
             ),
           ),
         ],
