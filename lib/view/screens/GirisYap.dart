@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
+import 'package:meyvebahcem/model/widgets/formWidget.dart';
 import '../../model/color_utils.dart';
 import '../../model/widgets/lottieWidget.dart';
 
@@ -11,6 +11,9 @@ class GirisYapEkran extends StatefulWidget {
 }
 
 class _GirisYapEkranState extends State<GirisYapEkran> {
+
+  TextEditingController _passwordTextController = TextEditingController();
+  TextEditingController _emailTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -32,7 +35,15 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
               padding: EdgeInsets.fromLTRB(20, MediaQuery.of(context).size.height * 0.2, 20, 0),
               child: Column(
                 children: <Widget>[
-                  lottieWidget("assets/looties/107999-energyshares-plant5.json")
+                  lottieWidget("assets/looties/107999-energyshares-plant5.json"),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  formWidget("Kullanıcı Adını Giriniz", Icons.person_outline, false, _emailTextController),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  formWidget("Şifrenizi Giriniz", Icons.lock_outline, true, _passwordTextController),
                 ],
               ),
             ),),
