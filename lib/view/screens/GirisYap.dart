@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meyvebahcem/model/widgets/formWidget.dart';
+import 'package:meyvebahcem/view/screens/KayitOl.dart';
 import '../../model/color_utils.dart';
 import '../../model/widgets/lottieWidget.dart';
 
@@ -44,10 +45,29 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
                     height: 30,
                   ),
                   formWidget("Şifrenizi Giriniz", Icons.lock_outline, true, _passwordTextController),
+                  SizedBox(height: 20,),
+                  girisYapKayitOlButton(context, true, () {}),
+                  girisYapOption()
                 ],
               ),
             ),),
         ),
       );
+  }
+
+  Row girisYapOption() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text("Hesabın yok mu?",
+        style: TextStyle(color: Colors.white)
+        ),
+        GestureDetector(onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => KayitOlEkran()));
+        },
+        child: const Text(" Kayıt Ol", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        )
+      ],
+    );
   }
 }
