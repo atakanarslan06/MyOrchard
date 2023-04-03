@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:meyvebahcem/view/screens/Anasayfa.dart';
 import 'package:meyvebahcem/view/screens/GirisYap.dart';
@@ -77,8 +78,17 @@ class _KayitOlEkranState extends State<KayitOlEkran> {
                   height: 20,
                 ),
                 girisYapKayitOlButton(context, false, () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => anaSayfaEkran()));
+                  FirebaseAuth.instance
+                      .createUserWithEmailAndPassword(
+                          email: _emailTextController.text,
+                          password: _passwordTextController.text)
+                      .then((value) {
+                        print("Hesap Oluşturuldu");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => anaSayfaEkran()));
+                  }).onError((error, stackTrace) {print("Error ${error.toString()}");});
                 })
               ],
             ),
