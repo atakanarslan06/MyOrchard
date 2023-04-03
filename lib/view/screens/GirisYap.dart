@@ -47,7 +47,7 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
                   formWidget("Şifrenizi Giriniz", Icons.lock_outline, true, _passwordTextController),
                   SizedBox(height: 20,),
                   girisYapKayitOlButton(context, true, () {}),
-                  girisYapOption()
+                  girisYapOption(),
                 ],
               ),
             ),),

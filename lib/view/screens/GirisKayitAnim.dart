@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:meyvebahcem/view/screens/GirisYap.dart';
+import 'package:meyvebahcem/view/screens/KayitOl.dart';
 
 import '../../model/widgets/AnimButton.dart';
 
@@ -59,7 +60,7 @@ class _GirisKayitAnimState extends State<GirisKayitAnim> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (_) => const GirisYapEkran(),
+        builder: (_) => const KayitOlEkran(),
       ),
     );
   }
