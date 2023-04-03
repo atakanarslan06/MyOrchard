@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meyvebahcem/view/screens/Anasayfa.dart';
+import 'package:meyvebahcem/view/screens/GirisYap.dart';
 
 import '../../model/color_utils.dart';
 import '../../model/widgets/formWidget.dart';
@@ -22,10 +23,16 @@ class _KayitOlEkranState extends State<KayitOlEkran> {
       appBar: AppBar(
         leading: Padding(
           padding: const EdgeInsets.all(5.0),
-          child: IconButton(iconSize: 30,
+          child: IconButton(
+            iconSize: 30,
             icon: const Icon(Icons.arrow_back),
             color: Colors.white,
-            onPressed: () => Navigator.of(context).pop(),
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const GirisYapEkran(),
+              ),
+            ),
           ),
         ),
         backgroundColor: Colors.transparent,
