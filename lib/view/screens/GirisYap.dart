@@ -4,6 +4,7 @@ import 'package:meyvebahcem/model/widgets/formWidget.dart';
 import 'package:meyvebahcem/view/screens/Anasayfa.dart';
 import 'package:meyvebahcem/view/screens/KayitOl.dart';
 import '../../model/color_utils.dart';
+import '../../model/widgets/forgetpass.dart';
 import '../../model/widgets/lottieWidget.dart';
 
 class GirisYapEkran extends StatefulWidget {
@@ -36,19 +37,20 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
             child: Column(
               children: <Widget>[
                 lottieWidget("assets/looties/107999-energyshares-plant5.json"),
-                SizedBox(
-                  height: 30,
+                const SizedBox(
+                  height: 10,
                 ),
                 formWidget("Kullanıcı Adını Giriniz", Icons.person_outline,
                     false, _emailTextController),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 formWidget("Şifrenizi Giriniz", Icons.lock_outline, true,
                     _passwordTextController),
-                SizedBox(
-                  height: 20,
+                const SizedBox(
+                  height: 5,
                 ),
+                forgetPassword(context),
                 girisYapKayitOlButton(context, true, () {
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword(

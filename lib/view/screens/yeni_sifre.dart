@@ -5,17 +5,15 @@ import 'package:meyvebahcem/view/screens/GirisYap.dart';
 import '../../model/color_utils.dart';
 import '../../model/widgets/formWidget.dart';
 
-class KayitOlEkran extends StatefulWidget {
-  const KayitOlEkran({Key? key}) : super(key: key);
+class YeniSifreEkran extends StatefulWidget {
+  const YeniSifreEkran({Key? key}) : super(key: key);
 
   @override
-  State<KayitOlEkran> createState() => _KayitOlEkranState();
+  State<YeniSifreEkran> createState() => _YeniSifreEkranState();
 }
 
-class _KayitOlEkranState extends State<KayitOlEkran> {
-  TextEditingController _passwordTextController = TextEditingController();
+class _YeniSifreEkranState extends State<YeniSifreEkran> {
   TextEditingController _emailTextController = TextEditingController();
-  TextEditingController _userNameTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,34 +59,11 @@ class _KayitOlEkranState extends State<KayitOlEkran> {
                 const SizedBox(
                   height: 20,
                 ),
-                formWidget("Kullanıcı Adını Giriniz", Icons.person_outline,
-                    false, _userNameTextController),
-                const SizedBox(
-                  height: 20,
-                ),
                 formWidget("E  Mailinizi Giriniz", Icons.person_outline, false,
                     _emailTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                formWidget("Şifrenizi Giriniz", Icons.lock_outline, true,
-                    _passwordTextController),
-                const SizedBox(
-                  height: 20,
-                ),
-                girisYapKayitOlButton(context, false, () {
-                  FirebaseAuth.instance
-                      .createUserWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
-                      .then((value) {
-                        print("Hesap Oluşturuldu");
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => anaSayfaEkran()));
-                  }).onError((error, stackTrace) {print("Error ${error.toString()}");});
-                })
               ],
             ),
           ),
