@@ -51,7 +51,7 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
                   height: 5,
                 ),
                 forgetPassword(context),
-                girisYapKayitOlButton(context, true, () {
+                firebaseButton(context, "Giriş Yap", () {
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword(
                           email: _emailTextController.text,

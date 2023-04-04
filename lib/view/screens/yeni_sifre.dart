@@ -1,9 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:meyvebahcem/view/screens/Anasayfa.dart';
 import 'package:meyvebahcem/view/screens/GirisYap.dart';
 import '../../model/color_utils.dart';
 import '../../model/widgets/formWidget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class YeniSifreEkran extends StatefulWidget {
   const YeniSifreEkran({Key? key}) : super(key: key);
@@ -36,7 +35,7 @@ class _YeniSifreEkranState extends State<YeniSifreEkran> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
-          "Kayıt Ol",
+          "Yeni Şifre",
           style: TextStyle(
               fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
         ),
@@ -64,6 +63,10 @@ class _YeniSifreEkranState extends State<YeniSifreEkran> {
                 const SizedBox(
                   height: 20,
                 ),
+                firebaseButton(context, "Şifreyi Yenile", () {
+                  FirebaseAuth.instance.sendPasswordResetEmail(email: _emailTextController.text)
+                  .then((value) => Navigator.of(context).pop());
+                })
               ],
             ),
           ),

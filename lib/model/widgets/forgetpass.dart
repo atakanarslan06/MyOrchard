@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meyvebahcem/view/screens/yeni_sifre.dart';
 
 Widget forgetPassword(BuildContext context) {
   return Container(
@@ -6,12 +7,13 @@ Widget forgetPassword(BuildContext context) {
     height: 35,
     alignment: Alignment.bottomRight,
     child: TextButton(
-      child: Text(
+      child: const Text(
         "Şifrenizi Mi Unuttunuz?",
         style: TextStyle(color: Colors.white70),
         textAlign: TextAlign.right,
       ),
-      onPressed: () {},
+      onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)
+      => const YeniSifreEkran())),
     ),
   );
 }
