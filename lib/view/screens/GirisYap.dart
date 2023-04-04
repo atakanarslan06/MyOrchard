@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:meyvebahcem/model/widgets/formWidget.dart';
+import 'package:meyvebahcem/view/screens/Anasayfa.dart';
 import 'package:meyvebahcem/view/screens/KayitOl.dart';
 import '../../model/color_utils.dart';
 import '../../model/widgets/lottieWidget.dart';
@@ -12,60 +14,78 @@ class GirisYapEkran extends StatefulWidget {
 }
 
 class _GirisYapEkranState extends State<GirisYapEkran> {
-
   TextEditingController _passwordTextController = TextEditingController();
   TextEditingController _emailTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration:
-        BoxDecoration(
-        gradient: LinearGradient(colors:
-        [
-          hexStringToColor("76addf"),
-          hexStringToColor("6aa84f"),
-          hexStringToColor("ad8443")
-        ],
-          begin: Alignment.topCenter, end:  Alignment.bottomCenter),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+            hexStringToColor("76addf"),
+            hexStringToColor("6aa84f"),
+            hexStringToColor("ad8443")
+          ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
         child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.fromLTRB(20, MediaQuery.of(context).size.height * 0.2, 20, 0),
-              child: Column(
-                children: <Widget>[
-                  lottieWidget("assets/looties/107999-energyshares-plant5.json"),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  formWidget("Kullanıcı Adını Giriniz", Icons.person_outline, false, _emailTextController),
-                  SizedBox(
-                    height: 30,
-                  ),
-                  formWidget("Şifrenizi Giriniz", Icons.lock_outline, true, _passwordTextController),
-                  SizedBox(height: 20,),
-                  girisYapKayitOlButton(context, true, () {}),
-                  girisYapOption(),
-                ],
-              ),
-            ),),
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(
+                20, MediaQuery.of(context).size.height * 0.2, 20, 0),
+            child: Column(
+              children: <Widget>[
+                lottieWidget("assets/looties/107999-energyshares-plant5.json"),
+                SizedBox(
+                  height: 30,
+                ),
+                formWidget("Kullanıcı Adını Giriniz", Icons.person_outline,
+                    false, _emailTextController),
+                SizedBox(
+                  height: 30,
+                ),
+                formWidget("Şifrenizi Giriniz", Icons.lock_outline, true,
+                    _passwordTextController),
+                SizedBox(
+                  height: 20,
+                ),
+                girisYapKayitOlButton(context, true, () {
+                  FirebaseAuth.instance
+                      .signInWithEmailAndPassword(
+                          email: _emailTextController.text,
+                          password: _passwordTextController.text)
+                      .then((value) {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => anaSayfaEkran()));
+                  }).onError((error, stackTrace) {
+                    print("Error ${error.toString()}");
+                  });
+                }),
+                girisYapOption(),
+              ],
+            ),
+          ),
         ),
-      );
+      ),
+    );
   }
 
   Row girisYapOption() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text("Hesabın yok mu?",
-        style: TextStyle(color: Colors.white)
-        ),
-        GestureDetector(onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => KayitOlEkran()));
-        },
-        child: const Text(" Kayıt Ol", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+        const Text("Hesabın yok mu?", style: TextStyle(color: Colors.white)),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => KayitOlEkran()));
+          },
+          child: const Text(
+            " Kayıt Ol",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          ),
         )
       ],
     );

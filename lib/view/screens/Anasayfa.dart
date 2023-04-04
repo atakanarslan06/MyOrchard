@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:meyvebahcem/view/screens/GirisYap.dart';
 
@@ -14,10 +15,14 @@ class _anaSayfaEkranState extends State<anaSayfaEkran> {
     return Scaffold(
       body: Center(
         child: ElevatedButton(
-          onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => GirisYapEkran()
-          ));  },
-          child: Text("Çıkış Yap"),
-        ),
+            child: const Text("Çıkış Yap"),
+            onPressed: () {
+              FirebaseAuth.instance.signOut().then((value) {
+                print("Çıkış Yapıldı");
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => GirisYapEkran()));
+              });
+            }),
       ),
     );
   }
