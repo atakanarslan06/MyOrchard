@@ -35,7 +35,7 @@ class _YeniSifreEkranState extends State<YeniSifreEkran> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
-          "Kayıt Ol",
+          "Yeni Şifre",
           style: TextStyle(
               fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
         ),
