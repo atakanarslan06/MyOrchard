@@ -27,8 +27,8 @@ TextField formWidget(String text, IconData icon, bool isPasswordType,
           : TextInputType.emailAddress);
 }
 
-Container girisYapKayitOlButton(
-    BuildContext context, bool isLogin, Function onTap) {
+Container firebaseButton(
+    BuildContext context, String title, Function onTap) {
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 50,
@@ -52,7 +52,7 @@ Container girisYapKayitOlButton(
         ),
       ),
       child: Text(
-        isLogin ? 'GİRİŞ YAP' : 'KAYIT OL',
+        title,
         style: const TextStyle(
             color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
       ),

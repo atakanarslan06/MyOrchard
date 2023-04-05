@@ -76,7 +76,7 @@ class _KayitOlEkranState extends State<KayitOlEkran> {
                 const SizedBox(
                   height: 20,
                 ),
-                girisYapKayitOlButton(context, false, () {
+                firebaseButton(context, "Kayıt Ol", () {
                   FirebaseAuth.instance
                       .createUserWithEmailAndPassword(
                           email: _emailTextController.text,
