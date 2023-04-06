@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meyvebahcem/view/google_maps_view.dart';
 import 'package:meyvebahcem/view/screens/Bahcem.dart';
 import 'package:meyvebahcem/view/screens/Bitkiler.dart';
 import 'package:meyvebahcem/view/screens/HavaDurumu.dart';
@@ -14,7 +15,7 @@ class AnaGiris extends StatefulWidget {
 
 class _AnaGirisState extends State<AnaGiris> {
   List pages = [
-    const HaritaSayfa(),
+    const GoogleMapsView(),
     const HavaDurumuSayfa(),
     const BahcemSayfa(),
     const BitkilerSayfa(),
