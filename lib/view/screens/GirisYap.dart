@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:meyvebahcem/model/widgets/formWidget.dart';
-import 'package:meyvebahcem/view/screens/Anasayfa.dart';
+
+import 'package:meyvebahcem/view/screens/AnaGiris.dart';
 import 'package:meyvebahcem/view/screens/KayitOl.dart';
 import '../../model/color_utils.dart';
 import '../../model/widgets/forgetpass.dart';
@@ -60,7 +61,7 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => anaSayfaEkran()));
+                            builder: (context) => AnaGiris()));
                   }).onError((error, stackTrace) {
                     print("Error ${error.toString()}");
                   });
