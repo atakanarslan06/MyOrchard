@@ -49,4 +49,11 @@ class AnimButton extends StatelessWidget {
       ),
     );
   }
+  /*child: ElevatedButton(
+  child: const Text("Çıkış Yap"),
+  onPressed: () {
+  FirebaseAuth.instance.signOut().then((value) {
+  print("Çıkış Yapıldı");
+  Navigator.push(context,
+  MaterialPageRoute(builder: (context) => GirisYapEkran()));*/
 }

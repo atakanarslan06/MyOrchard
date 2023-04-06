@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-TextField formWidget(String text, IconData icon, bool isPasswordType,
+TextFormField formWidget(String text, IconData icon, bool isPasswordType,
     TextEditingController controller) {
-  return TextField(
+  return TextFormField(
       controller: controller,
       obscureText: isPasswordType,
       enableSuggestions: !isPasswordType,
@@ -14,6 +14,7 @@ TextField formWidget(String text, IconData icon, bool isPasswordType,
           color: Colors.white70,
         ),
         labelText: text,
+
         labelStyle: TextStyle(color: Colors.white.withOpacity(0.9)),
         filled: true,
         floatingLabelBehavior: FloatingLabelBehavior.never,
@@ -25,6 +26,7 @@ TextField formWidget(String text, IconData icon, bool isPasswordType,
       keyboardType: isPasswordType
           ? TextInputType.visiblePassword
           : TextInputType.emailAddress);
+
 }
 
 Container firebaseButton(
