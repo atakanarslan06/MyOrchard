@@ -30,8 +30,15 @@ class _AnaGirisState extends State<AnaGiris> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Meyve Bahçem'),
+        title: const Text('Meyve Bahçem', style: TextStyle(color: Colors.white70),),
         centerTitle: true,
+        actions: <Widget>[
+          IconButton(onPressed: (){}, icon: const Icon(Icons.notifications), color: Colors.white70,),
+        ],
+        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.logout), color: Colors.white70,),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25),)
+        ),
       ),
       body: pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
