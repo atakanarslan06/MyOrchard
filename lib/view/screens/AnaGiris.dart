@@ -29,6 +29,10 @@ class _AnaGirisState extends State<AnaGiris> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Meyve Bahçem'),
+        centerTitle: true,
+      ),
       body: pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: _onTap,
