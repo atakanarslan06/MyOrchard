@@ -4,7 +4,6 @@ import 'package:meyvebahcem/view/screens/Bahcem.dart';
 import 'package:meyvebahcem/view/screens/Bitkiler.dart';
 import 'package:meyvebahcem/view/screens/HavaDurumu.dart';
 import 'package:meyvebahcem/view/screens/Notlar.dart';
-import 'package:meyvebahcem/view/screens/Harita.dart';
 
 class AnaGiris extends StatefulWidget {
   const AnaGiris({Key? key}) : super(key: key);
@@ -15,31 +14,45 @@ class AnaGiris extends StatefulWidget {
 
 class _AnaGirisState extends State<AnaGiris> {
   List pages = [
-    const GoogleMapsView(),
+    const GoogleHarita(),
     const HavaDurumuSayfa(),
     const BahcemSayfa(),
     const BitkilerSayfa(),
     const NotlarSayfa(),
   ];
   int _currentIndex = 0;
-  void _onTap(int index){
-  setState(() {
-    _currentIndex = index;
-  });
-}
+  void _onTap(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Meyve Bahçem', style: TextStyle(color: Colors.white70),),
+        title: const Text(
+          'Meyve Bahçem',
+          style: TextStyle(color: Colors.white70),
+        ),
         centerTitle: true,
         actions: <Widget>[
-          IconButton(onPressed: (){}, icon: const Icon(Icons.notifications), color: Colors.white70,),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.notifications),
+            color: Colors.white70,
+          ),
         ],
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.logout), color: Colors.white70,),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(bottomLeft: Radius.circular(25), bottomRight: Radius.circular(25),)
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.logout),
+          color: Colors.white70,
         ),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(25),
+          bottomRight: Radius.circular(25),
+        )),
       ),
       body: pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

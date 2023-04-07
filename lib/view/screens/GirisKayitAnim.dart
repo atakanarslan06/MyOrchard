@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:meyvebahcem/view/screens/GirisYap.dart';
 import 'package:meyvebahcem/view/screens/KayitOl.dart';
-
 import '../../model/widgets/AnimButton.dart';
 
 class GirisKayitAnim extends StatefulWidget {

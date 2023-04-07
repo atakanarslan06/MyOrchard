@@ -2,53 +2,62 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class GoogleMapsView extends StatefulWidget {
-  const GoogleMapsView({Key? key}) : super(key: key);
+class GoogleHarita extends StatefulWidget {
+  const GoogleHarita({Key? key}) : super(key: key);
 
   @override
-  State<GoogleMapsView> createState() => _GoogleMapsViewState();
+  State<GoogleHarita> createState() => _GoogleHaritaState();
 }
 
-class _GoogleMapsViewState extends State<GoogleMapsView> {
-  late GoogleMapController controller;
-  static final CameraPosition _bahcem = CameraPosition(
+class _GoogleHaritaState extends State<GoogleHarita> {
+  static const _initialCameraPosition = CameraPosition(
     target: LatLng(39.6620261, 32.8609159),
-    zoom: 19.151926040649414,
+    zoom: 11.5,
   );
+
+  Marker _MapIcon;
+  Marker _Norm;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GoogleMap(
-          mapType: MapType.normal,
-          initialCameraPosition: _bahcem,
-          onMapCreated: (map) async {
-            controller = map;
-            await _createMarkerImageFromAsset(context);
-            setState(() {});
-          },
-          markers: _createMarker(),
+        mapType: MapType.hybrid,
+        myLocationButtonEnabled: false,
+        zoomControlsEnabled: false,
+        initialCameraPosition: _initialCameraPosition,
+        markers: {
+          if (_MapIcon != null) _Norm,
+          if(_Norm != null) _MapIcon
+        },
+        onLongPress: _addMarker,
       ),
     );
   }
+  void _addMarker(LatLng pos)
+  {
+    if (_MapIcon == null || (_MapIcon != null && _Norm != null)){
+      setState(() {
+        _MapIcon = Marker(
+          markerId:  const MarkerId('bahcem'),
+          infoWindow: const InfoWindow(title: 'Bahcem'),
+          icon:
+            BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
+          position: pos,
+        );
+        _Norm = null;
+      });
 
-    BitmapDescriptor mapIcon;
-
-  Future<void> _createMarkerImageFromAsset(BuildContext context) async {
-    final ImageConfiguration imageConfiguration = createLocalImageConfiguration(
-        context);
-    var bitmap = await BitmapDescriptor.fromAssetImage(
-        imageConfiguration, 'assets/images/mapicon.png');
-    mapIcon = bitmap;
-    setState(() {});
-  }
-
-  Set<Marker> _createMarker() {
-    return <Marker>[
-      Marker(markerId: MarkerId("asda"),
-        position: _bahcem.target,
-        icon: mapIcon,
-      )
-    ].toSet();
+    }else
+      {
+        setState(() {
+          _Norm = Marker(markerId: const MarkerId("norm"),
+          infoWindow: const InfoWindow(title: "Norm"),
+            icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
+            position: pos,
+          );
+        });
+      }
   }
 }
+

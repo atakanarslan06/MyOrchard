@@ -3,7 +3,7 @@ class UnboardingContent {
   String title;
   String description;
 
-  UnboardingContent({required this.image, required this.title, required this.description});
+  UnboardingContent({required this.image,  required this.title,  required this.description});
 }
 List<UnboardingContent> contents = [
   UnboardingContent(

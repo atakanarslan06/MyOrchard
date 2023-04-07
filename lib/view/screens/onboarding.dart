@@ -12,7 +12,7 @@ class Onboarding extends StatefulWidget {
 
 class _OnboardingState extends State<Onboarding> {
   int currentIndex = 0;
-  late PageController _controller;
+   late PageController _controller;
 
   @override
   void initState() {
