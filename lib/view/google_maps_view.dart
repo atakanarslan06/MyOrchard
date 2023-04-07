@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+
 class GoogleHarita extends StatefulWidget {
   const GoogleHarita({Key? key}) : super(key: key);
 
@@ -10,54 +11,61 @@ class GoogleHarita extends StatefulWidget {
 }
 
 class _GoogleHaritaState extends State<GoogleHarita> {
-  static const _initialCameraPosition = CameraPosition(
+  static final CameraPosition _bahcem = CameraPosition(
     target: LatLng(39.6620261, 32.8609159),
-    zoom: 11.5,
+    zoom: 19.5,
   );
+  List<LatLng> polygonPoints = [
+    LatLng(39.661972, 32.860989),
+    LatLng(39.662105, 32.860830),
+    LatLng(39.662217, 32.861005),
+    LatLng(39.662081, 32.861156),
 
-  Marker _MapIcon;
-  Marker _Norm;
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GoogleMap(
         mapType: MapType.hybrid,
-        myLocationButtonEnabled: false,
-        zoomControlsEnabled: false,
-        initialCameraPosition: _initialCameraPosition,
-        markers: {
-          if (_MapIcon != null) _Norm,
-          if(_Norm != null) _MapIcon
+        initialCameraPosition: _bahcem,
+        onMapCreated: (map) async {
+          await _createdMarkerImageFromAsset(context);
+          setState(() {});
         },
-        onLongPress: _addMarker,
+        polygons: {
+          Polygon(polygonId: PolygonId("1"),
+          points: polygonPoints,
+            fillColor: Colors.lightGreenAccent.withOpacity(0.6),
+            strokeWidth: 2,
+            strokeColor: Colors.brown,
+          ),
+        },
+        markers: _createMarker(),
       ),
     );
   }
-  void _addMarker(LatLng pos)
-  {
-    if (_MapIcon == null || (_MapIcon != null && _Norm != null)){
-      setState(() {
-        _MapIcon = Marker(
-          markerId:  const MarkerId('bahcem'),
-          infoWindow: const InfoWindow(title: 'Bahcem'),
-          icon:
-            BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
-          position: pos,
-        );
-        _Norm = null;
-      });
 
-    }else
-      {
-        setState(() {
-          _Norm = Marker(markerId: const MarkerId("norm"),
-          infoWindow: const InfoWindow(title: "Norm"),
-            icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-            position: pos,
-          );
-        });
-      }
+  BitmapDescriptor bahceIcon =
+  BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet);
+
+  Future<void> _createdMarkerImageFromAsset(BuildContext context) async {
+    final ImageConfiguration imageConfiguration =
+    createLocalImageConfiguration(context);
+    var bitmap = await BitmapDescriptor.fromAssetImage(
+        imageConfiguration, 'assets/images/mapicon.png');
+    bahceIcon = bitmap;
+    setState(() {});
+  }
+
+  Set<Marker> _createMarker() {
+    return <Marker>[
+      Marker(
+        markerId: MarkerId("1"),
+        position: _bahcem.target,
+        icon: bahceIcon,
+        infoWindow: InfoWindow(title: "Benim Bahçem"),
+      ),
+    ].toSet();
   }
 }
-

@@ -5,6 +5,7 @@ import 'package:meyvebahcem/view/screens/Bitkiler.dart';
 import 'package:meyvebahcem/view/screens/HavaDurumu.dart';
 import 'package:meyvebahcem/view/screens/Notlar.dart';
 
+
 class AnaGiris extends StatefulWidget {
   const AnaGiris({Key? key}) : super(key: key);
 
