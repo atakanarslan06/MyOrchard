@@ -21,7 +21,7 @@ class _AnaGirisState extends State<AnaGiris> {
     const HavaDurumSayfa(),
     const BahcemSayfa(),
     const BitkilerSayfa(),
-    const NotlarSayfa(),
+     NotlarSayfa(),
   ];
   int _currentIndex = 0;
   void _onTap(int index) {
