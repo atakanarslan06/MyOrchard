@@ -6,6 +6,8 @@ import 'package:meyvebahcem/view/screens/HavaDurumu.dart';
 import 'package:meyvebahcem/view/screens/Notlar.dart';
 
 
+
+
 class AnaGiris extends StatefulWidget {
   const AnaGiris({Key? key}) : super(key: key);
 
@@ -16,7 +18,7 @@ class AnaGiris extends StatefulWidget {
 class _AnaGirisState extends State<AnaGiris> {
   List pages = [
     const GoogleHarita(),
-    const HavaDurumuSayfa(),
+    const HavaDurumSayfa(),
     const BahcemSayfa(),
     const BitkilerSayfa(),
     const NotlarSayfa(),
