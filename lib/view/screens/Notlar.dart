@@ -59,20 +59,20 @@ class _NotlarSayfaState extends State<NotlarSayfa> {
                               FirebaseFirestore.instance.collection('notlar').doc(not.id).delete();
                              },
                             child: Card(
-                              color: Colors.lightGreen.shade400,
+                              color: Colors.brown,
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   children: [
                                     Text(
                                       not['not'],
-                                      style: const TextStyle(color: Colors.brown,
+                                      style: const TextStyle(color: Colors.white,
                                       fontWeight: FontWeight.bold, ),
                                     ),
                                     const Divider(),
                                     Text(
                                       DateFormat('dd/MM/yyyy    HH:mm').format(not['createdAt'].toDate(),),
-                                      style: TextStyle(color: Colors.brown,
+                                      style: TextStyle(color: Colors.white,
                                         fontWeight: FontWeight.bold,),
                                     )
                                   ],
