@@ -52,12 +52,12 @@ class _AcilisEkranState extends State<AcilisEkran> {
                   child: Column(
                     children: [
                       Image.asset(
-                        contents[i].resim, //Acılıs Ekran Content classımızdan resimi getirdik
+                        contents[i].image, //Acılıs Ekran Content classımızdan resimi getirdik
                         height: 300,
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        contents[i].baslik, //Acılıs Ekran Content classımızdan başlığı getirdik
+                        contents[i].title, //Acılıs Ekran Content classımızdan başlığı getirdik
                         style: const TextStyle(
                           color: Colors.green,
                           fontSize: 35,
@@ -66,7 +66,7 @@ class _AcilisEkranState extends State<AcilisEkran> {
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        contents[i].bilgi, //Acılıs Ekran Content classımızdan bilgiyi getirdik
+                        contents[i].description, //Acılıs Ekran Content classımızdan bilgiyi getirdik
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 18,
