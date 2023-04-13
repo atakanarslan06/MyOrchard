@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:meyvebahcem/view/google_maps_view.dart';
 import 'package:meyvebahcem/view/screens/Bahcem.dart';
@@ -5,8 +6,7 @@ import 'package:meyvebahcem/view/screens/Bitkiler.dart';
 import 'package:meyvebahcem/view/screens/HavaDurumu.dart';
 import 'package:meyvebahcem/view/screens/Notlar.dart';
 
-
-
+import 'GirisYap.dart';
 
 class AnaGiris extends StatefulWidget {
   const AnaGiris({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _AnaGirisState extends State<AnaGiris> {
     const HavaDurumSayfa(),
     const BahcemSayfa(),
     const BitkilerSayfa(),
-     NotlarSayfa(),
+    NotlarSayfa(),
   ];
   int _currentIndex = 0;
   void _onTap(int index) {
@@ -42,12 +42,18 @@ class _AnaGirisState extends State<AnaGiris> {
         actions: <Widget>[
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications), //Bildirim iconu
             color: Colors.white70,
           ),
         ],
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            FirebaseAuth.instance.signOut().then((value) { // Çıkış yapma işlemi
+              print("Çıkış Yapıldı");
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const GirisYapEkran())); // Çıkıştan sonra sayfa yönlendirmesi
+            });
+          },
           icon: const Icon(Icons.logout),
           color: Colors.white70,
         ),
@@ -58,7 +64,7 @@ class _AnaGirisState extends State<AnaGiris> {
         )),
       ),
       body: pages[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: BottomNavigationBar( //Alt Bar Elemanları
         onTap: _onTap,
         currentIndex: _currentIndex,
         selectedItemColor: Colors.green,
