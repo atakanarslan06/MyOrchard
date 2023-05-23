@@ -1,5 +1,4 @@
 import 'package:http/http.dart' as http;
-
 import '../model/bitki_model.dart';
 
 class BitkiService {
