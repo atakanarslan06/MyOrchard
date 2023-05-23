@@ -12,10 +12,10 @@ class HavaDurumSayfa extends StatefulWidget {
 
 class _HavaDurumSayfa extends State<HavaDurumSayfa> {
   Future<Weather> fetchWeather() async {
-    final resp = await http.get(Uri.parse(
+    final resp = await http.get(Uri.parse( // API bağlantısı yapılmıştır
         "https://api.openweathermap.org/data/2.5/weather?lat=39.661972&lon=32.860989&appid=40a863f9e45d22da8b470ec6b980b2c1&units=metric"));
 
-    if (resp.statusCode == 200) {
+    if (resp.statusCode == 200) { // if koşulu ile verilerin gelmemesi halinde exception oluşturuldu
       Map<String, dynamic> json = jsonDecode(resp.body);
 
       return Weather.fromJson(json);
@@ -57,7 +57,7 @@ class _HavaDurumSayfa extends State<HavaDurumSayfa> {
                   ),
 
                   Text(
-                    snapshot.data!.weather[0]['main'].toString(),
+                    snapshot.data!.weather[0]['main'].toString(),  // JSON main bilgileri alınmıştır
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 22,
@@ -69,7 +69,7 @@ class _HavaDurumSayfa extends State<HavaDurumSayfa> {
                     height: 10,
                   ),
                   const Text(
-                    '9 Nisan, 2023',
+                    '16 Nisan, 2023',
                     style: TextStyle(
                       color: Colors.white,
                     ),
@@ -81,7 +81,7 @@ class _HavaDurumSayfa extends State<HavaDurumSayfa> {
                     decoration: const BoxDecoration(
                         image: DecorationImage(
                           image: AssetImage(
-                            'assets/images/weatherr.png',
+                            'assets/images/weatherr.png', // Resim Eklenmiştir
                           ),
                         )),
                   ),
@@ -104,7 +104,7 @@ class _HavaDurumSayfa extends State<HavaDurumSayfa> {
                             height: 10,
                           ),
                           Text(
-                            '${(snapshot.data!.main['temp'])}',
+                            '${(snapshot.data!.main['temp'])}', // Sıcaklık bilgisi alınmıştır
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 21,
@@ -129,7 +129,7 @@ class _HavaDurumSayfa extends State<HavaDurumSayfa> {
                             height: 10,
                           ),
                           Text(
-                            '${snapshot.data!.wind['speed']} km/h',
+                            '${snapshot.data!.wind['speed']} km/h', //rüzgar bilgisi alınmıştır
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 21,
@@ -154,7 +154,7 @@ class _HavaDurumSayfa extends State<HavaDurumSayfa> {
                             height: 10,
                           ),
                           Text(
-                            '${snapshot.data!.main['humidity']}%',
+                            '${snapshot.data!.main['humidity']}%', // Nem bilgisi alınmıştır
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 21,
@@ -168,17 +168,6 @@ class _HavaDurumSayfa extends State<HavaDurumSayfa> {
                   const SizedBox(
                     height: 30,
                   ),
-                  /*ElevatedButton(
-                    onPressed: () {},
-                    child: const Text('Haftalık Hava Durumunu Gör',
-                      style: TextStyle(color: Colors.white),),
-                    style: ElevatedButton.styleFrom(
-                        primary: Colors.green.shade500,
-                        minimumSize: Size(
-                          MediaQuery.of(context).size.width / 1.1,
-                          50,
-                        )),
-                  )*/
                 ],
               );
             } else if (snapshot.hasError) {

@@ -1,5 +1,3 @@
-import 'package:flutter/cupertino.dart';
-
 class Weather {
   final String name;
   var main;
