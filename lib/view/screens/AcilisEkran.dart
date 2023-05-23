@@ -3,14 +3,14 @@ import 'package:meyvebahcem/model/content_model.dart';
 import 'package:meyvebahcem/view/screens/GirisKayitAnim.dart';
 
 
-class Onboarding extends StatefulWidget {
-  const Onboarding({Key? key}) : super(key: key);
+class AcilisEkran extends StatefulWidget {
+  const AcilisEkran({Key? key}) : super(key: key);
 
   @override
-  State<Onboarding> createState() => _OnboardingState();
+  State<AcilisEkran> createState() => _AcilisEkranState();
 }
 
-class _OnboardingState extends State<Onboarding> {
+class _AcilisEkranState extends State<AcilisEkran> {
   int currentIndex = 0;
    late PageController _controller;
 
@@ -32,12 +32,13 @@ class _OnboardingState extends State<Onboarding> {
         backgroundColor: Colors.lightGreenAccent,
         foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)));
+        // Geçiş İçin Button Oluşturduk Ve Stil Verdik
 
-    return Scaffold(
-      body: Column(
+    return Scaffold( // Scaffold Ana Ekran Yapısı İçin Kullanılan Metottur
+      body: Column(  // Column Ekrana yerleştirilen elemanların yukarıdan aşağıya sıralanmasını sağlar
         children: [
-          Expanded(
-            child: PageView.builder(
+          Expanded(  // Expanded Ekran içinde elemanın esnetilerek düzgün yerleştirilmesini sağlar
+            child: PageView.builder( // Dinamik sayfa görüntülerini oluşturmak için kullanılır
               controller: _controller,
               itemCount: contents.length,
               onPageChanged: (int index) {
@@ -46,17 +47,17 @@ class _OnboardingState extends State<Onboarding> {
                 });
               },
               itemBuilder: (_, i) {
-                return Padding(
-                  padding: const EdgeInsets.all(40),
+                return Padding(// Padding ekranda boşluk kullanmak için yapılan ayardır.
+                  padding: const EdgeInsets.all(40), // Burada ekranın her kenarından 40 piksel boşluk oluşturduk
                   child: Column(
                     children: [
                       Image.asset(
-                        contents[i].image,
+                        contents[i].image, //Acılıs Ekran Content classımızdan resimi getirdik
                         height: 300,
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        contents[i].title,
+                        contents[i].title, //Acılıs Ekran Content classımızdan başlığı getirdik
                         style: const TextStyle(
                           color: Colors.green,
                           fontSize: 35,
@@ -65,7 +66,7 @@ class _OnboardingState extends State<Onboarding> {
                       ),
                       const SizedBox(height: 20),
                       Text(
-                        contents[i].description,
+                        contents[i].description, //Acılıs Ekran Content classımızdan bilgiyi getirdik
                         textAlign: TextAlign.center,
                         style: const TextStyle(
                           fontSize: 18,
@@ -78,10 +79,10 @@ class _OnboardingState extends State<Onboarding> {
               },
             ),
           ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
+          Container( // Container istediğimiz gibi nesneleri konumlandırıp yerleştireceğimiz kutulardır
+            child: Row( // Row kutu içerisindeki elemanların yan yana sıralanmasını sağlar
+              mainAxisAlignment: MainAxisAlignment.center, //Ortalı hizalanmasını sağlar.
+              children: List.generate(// Liste Döndürmeyi sağlar
                 contents.length,
                 (index) => yuvGcs(index, context),
               ),
@@ -89,26 +90,27 @@ class _OnboardingState extends State<Onboarding> {
           ),
           Container(
             height: 60,
-            margin: EdgeInsets.all(40),
+            margin: const EdgeInsets.all(40),
             width: double.infinity,
-            child: TextButton(
+            child: TextButton(// Basıldığında sayfanın geçme fonksiyonunu çalıştırır
               onPressed: () {
                 if (currentIndex == contents.length - 1) {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const GirisKayitAnim(),
+                      builder: (_) => const GirisKayitAnim(), //Son ekranda GirisKayitAnim sayfasına yönlendirir
                     ),
                   );
                 }
                 _controller.nextPage(
-                  duration: Duration(milliseconds: 100),
+                  duration: const Duration(milliseconds: 100), //sayfa gecisinin 100 milisaniyede yapılmasını sağlar
                   curve: Curves.bounceIn,
                 );
               },
-              child: Text(
-                  currentIndex == contents.length - 1 ? "Hadi Başlayalım" : "İleri"),
               style: style,
+              child: Text(
+                  currentIndex == contents.length - 1 ? "Hadi Başlayalım" : "İleri" // Sayfa uzunluğuna göre text yazımı
+              ),
             ),
           ),
         ],
@@ -116,11 +118,11 @@ class _OnboardingState extends State<Onboarding> {
     );
   }
 
-  Container yuvGcs(int index, BuildContext context) {
+  Container yuvGcs(int index, BuildContext context) { //yuvarlak küçük kutuların renk değişim kodu
     return Container(
       height: 10,
       width: currentIndex == index ? 25 : 10,
-      margin: EdgeInsets.only(right: 5),
+      margin: const EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Colors.lightGreenAccent,

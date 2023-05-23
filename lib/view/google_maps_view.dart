@@ -26,7 +26,7 @@ class _GoogleHaritaState extends State<GoogleHarita> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: GoogleMap(
+      body: GoogleMap( // Google Mapimizi entegre ettik
         mapType: MapType.hybrid,
         initialCameraPosition: _bahcem,
         onMapCreated: (map) async {
@@ -34,7 +34,7 @@ class _GoogleHaritaState extends State<GoogleHarita> {
           setState(() {});
         },
         polygons: {
-          Polygon(polygonId: PolygonId("1"),
+          Polygon(polygonId: PolygonId("1"), // Polygon özelliği ile çizilebilir alan oluşturduk
           points: polygonPoints,
             fillColor: Colors.lightGreenAccent.withOpacity(0.6),
             strokeWidth: 2,
@@ -49,7 +49,7 @@ class _GoogleHaritaState extends State<GoogleHarita> {
   BitmapDescriptor bahceIcon =
   BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueViolet);
 
-  Future<void> _createdMarkerImageFromAsset(BuildContext context) async {
+  Future<void> _createdMarkerImageFromAsset(BuildContext context) async { // Uygulamamıza özel marker oluşturduk
     final ImageConfiguration imageConfiguration =
     createLocalImageConfiguration(context);
     var bitmap = await BitmapDescriptor.fromAssetImage(
@@ -58,7 +58,7 @@ class _GoogleHaritaState extends State<GoogleHarita> {
     setState(() {});
   }
 
-  Set<Marker> _createMarker() {
+  Set<Marker> _createMarker() { // Oluşturduğumuz markeri set ettik
     return <Marker>[
       Marker(
         markerId: MarkerId("1"),

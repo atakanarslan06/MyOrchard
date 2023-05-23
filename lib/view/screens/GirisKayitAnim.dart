@@ -16,37 +16,35 @@ class _GirisKayitAnimState extends State<GirisKayitAnim> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Lottie.asset(
-                'assets/looties/140503-growing-tree.json',
-                height: 350,
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              AnimButton(
-                buttonColor: Colors.green,
-                buttonText: "Giriş Yap",
-                textColor: Colors.white,
-                handleButtonClick:
-                girisButtonClickHandler,),
-              SizedBox(height: 20,),
-              AnimButton(
-                buttonColor: Colors.lightGreen.shade400,
-                buttonText: "Kayıt Ol",
-                textColor: Colors.white,
-                handleButtonClick:
-                kayitButtonClickHandler,),
-            ],
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Lottie.asset( // Animasyon Girdisi
+              'assets/looties/140503-growing-tree.json',
+              height: 350,
+            ),
+            const SizedBox(
+              height: 50,
+            ),
+            AnimButton(
+              buttonColor: Colors.green,
+              buttonText: "Giriş Yap",
+              textColor: Colors.white,
+              handleButtonClick:
+              girisButtonClickHandler,),
+            const SizedBox(height: 20,),
+            AnimButton(
+              buttonColor: Colors.lightGreen.shade400,
+              buttonText: "Kayıt Ol",
+              textColor: Colors.white,
+              handleButtonClick:
+              kayitButtonClickHandler,),
+          ],
         ),
       ),
     );
   }
-  girisButtonClickHandler() {
+  girisButtonClickHandler() { // Giriş Yap butonuna basıldığında açılacak sayfa fonksiyonu
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -55,7 +53,7 @@ class _GirisKayitAnimState extends State<GirisKayitAnim> {
     );
   }
 
-  kayitButtonClickHandler() {
+  kayitButtonClickHandler() { // Kayıt ol butonuna basıldığında açılacak sayfa fonksiyonu
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(

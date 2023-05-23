@@ -47,9 +47,7 @@ class _AnaGirisState extends State<AnaGiris> {
           ),
         ],
         leading: IconButton(
-          onPressed: () {
-
-          },
+          onPressed: () {},
           icon: const Icon(Icons.logout),
           color: Colors.white70,
         ),

@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:meyvebahcem/model/widgets/formWidget.dart';
-
 import 'package:meyvebahcem/view/screens/AnaGiris.dart';
 import 'package:meyvebahcem/view/screens/KayitOl.dart';
 import '../../model/color_utils.dart';
@@ -31,7 +30,7 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
             hexStringToColor("ad8443")
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
         ),
-        child: SingleChildScrollView(
+        child: SingleChildScrollView( // Ekrana kaydırılabilir özelliği verir
           child: Padding(
             padding: EdgeInsets.fromLTRB(
                 20, MediaQuery.of(context).size.height * 0.2, 20, 0),
@@ -52,7 +51,7 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
                   height: 5,
                 ),
                 forgetPassword(context),
-                firebaseButton(context, "Giriş Yap", () {
+                firebaseButton(context, "Giriş Yap", () { // Firebaseyi entegre edip e mail ve şifre bilgilerini alıyoruz
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword(
                           email: _emailTextController.text,
@@ -61,9 +60,9 @@ class _GirisYapEkranState extends State<GirisYapEkran> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AnaGiris()));
+                            builder: (context) => const AnaGiris()));
                   }).onError((error, stackTrace) {
-                    print("Error ${error.toString()}");
+                    print("Error ${error.toString()}"); // Giriş yapılamazsa Error logu tutuyoruz
                   });
                 }),
                 girisYapOption(),

@@ -16,28 +16,27 @@ class AnimButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox( // Boşluk bırakmak için kullanılır
       width: 350,
-      child: ClipRRect(
-        child: ElevatedButton(
-          style: ButtonStyle(
+        child: ElevatedButton( // Button Metodu
+          style: ButtonStyle(  // Button Stili
             shape: MaterialStateProperty.all(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(20), //Button köşelerinin yuvarlaklaşması
               ),
             ),
-            padding: MaterialStateProperty.all(
-              EdgeInsets.symmetric(
+            padding: MaterialStateProperty.all(  //Button konum ayarlaması
+              const EdgeInsets.symmetric(
                 horizontal: 15,
                 vertical: 15,
               ),
             ),
-            backgroundColor: MaterialStateProperty.all(buttonColor),
+            backgroundColor: MaterialStateProperty.all(buttonColor), //Button rengi
           ),
           onPressed: () {
-            handleButtonClick();
+            handleButtonClick();  //Tıklandığında yapılacak fonksiyon
           },
-          child: Text(
+          child: Text(  //Buttonda yazılan text ve stilleri
             buttonText,
             style: TextStyle(
               color: textColor,
@@ -46,7 +45,6 @@ class AnimButton extends StatelessWidget {
             ),
           ),
         ),
-      ),
     );
   }
   /*child: ElevatedButton(
